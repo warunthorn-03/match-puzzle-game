@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Quest</title>
+    <link rel="stylesheet" href="stylePuzzle.css">
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        updateProfileScore();
+    });
+</script>
+<body class="forestBackground">
+
+    <!-- 🔄 ปุ่มย้อนกลับ -->
+<button class="pause-btn" onclick="pauseGame()">
+    <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+</button>
+
+    
+    <!-- 🎭 โปรไฟล์ผู้เล่น -->
+    <div class="profile-container">
+        <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic" alt="Profile">
+        <span id="playerName"></span>
+        <span id="playerScore"></span>
+
+    </div>
+
+    <!-- 🧩 โลโก้เกม -->
+    <div class="logo-container">
+        <img src="imagesPuzzle/decorate/LogoPuzzle.jpg" class="game-logo" alt="Puzzle Quest">
+    </div>
+
+    <!-- ⏳ จับเวลา -->
+    <div class="timer-container">
+        <div class="timer-circle">
+            <span id="timer">00:00</span>
+        </div>
+    </div>
+
+    <!-- 🎮 กระดานเกม -->
+    <div class="game-container">
+        <div id="puzzle-board"></div>
+    </div>
+
+    <!-- 🖼 แสดงภาพตัวอย่าง -->
+    <div class="preview-container">
+        <img id="preview-image" src="" alt="Preview">
+    </div>
+
+    <!-- Popup แพ้ -->
+<div id="lose-popup" class="popup" style="display: none;">
+    <span class="popup-close" onclick="goToLevel()">×</span>
+    <h2>Time’s Up!</h2>
+    <p>Try Again?</p>
+    <img src="imagesPuzzle/decorate/cry.png" alt="Game Over">
+    <div class="popup-buttons">
+        <button id="play-again-btn" onclick="playAgain()">Play Again</button>
+    </div>
+</div>
+
+<!-- Popup ชนะ -->
+<div id="win-popup" class="popup" style="display: none;">
+    <span class="popup-close" onclick="goToLevel()">×</span>
+    <h2>Win!!</h2>
+    <p>Excellent!</p>
+    <p>Your Score</p>
+    <h2 id="final-score">0</h2>
+    <img id="win-image" src="" alt="Completed Image">
+    <div class="popup-buttons">
+        <button id="btn-next" onclick="nextGame()">Next</button>
+    </div>
+</div>
+
+<!-- ⏸ Popup แจ้งเตือนเมื่อกดย้อนกลับ -->
+<div id="pause-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <p>Do you want to exit the game? <br> Your progress will be lost.</p>
+        <div class="popup-buttons">
+            <button onclick="goToLevel()" id="yes-btn">Yes</button>
+            <button onclick="resumeGame()" id="no-btn">No</button>
+        </div>
+    </div>
+</div>
+    <!-- 📜 เชื่อมไฟล์ JavaScript -->
+    <script src="scriptPuzzle.js" defer></script>
+
+</body>
+</html>

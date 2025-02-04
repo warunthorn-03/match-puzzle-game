@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="forestBackground">
+    <!-- ปุ่มย้อนกลับ -->
+    <button class="pause-btn" id="backButton" onclick="goBackTheme()">
+        <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+    </button>
+
+    <!-- ส่วนของโปรไฟล์ -->
+    <div class="profile-container">
+        <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic">
+        <span id="playerName"></span>
+        <span id="playerScore"></span>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let playerName = localStorage.getItem("playerName") || "Guest";
+                let totalScore = localStorage.getItem("totalScore") || "0";
+    
+                document.getElementById("playerName").textContent = playerName;
+                document.getElementById("playerScore").textContent = `${totalScore} POINT`;
+            });
+        </script>
+    </div>
+
+    <!-- โลโก้เกม -->
+    <img src="imagesPuzzle/decorate/MainLogo.webp" class="MainLogo">
+
+    <!-- หัวข้อหลัก -->
+    <h1 class="h1title">Select Your Game</h1>
+
+    <!-- การ์ดเกม -->
+    <div class="game-selection">
+        <div class="game-card" onclick="selectGame('match')">
+            <img src="imagesPuzzle/decorate/LogoMatchItUp.jpg" class="game-icon">
+            <p class="game-name">Match It Up!</p>
+        </div>
+
+        <div class="game-card" onclick="selectGame('puzzle')">
+            <img src="imagesPuzzle/decorate/LogoPuzzle.jpg" class="game-icon">
+            <p class="game-name">Puzzle Quest</p>
+        </div>
+    </div>
+
+   <script src="script.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Quest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body  class="mainBackground">
+    <div class="start-container">
+        <img src="imagesPuzzle/decorate/MainLogo.webp" class="logo">
+        <br>
+        <input type="text" id="playerName" placeholder="Enter your name">
+        <br>
+        <button onclick="savePlayerData()">Start</button>
+    </div>
+
+    <script>
+         function savePlayerData() {
+            let playerName = document.getElementById("playerName").value.trim();
+            if (playerName !== "") {
+                localStorage.setItem("playerName", playerName);
+                localStorage.setItem("score", 0); // ตั้งคะแนนเริ่มต้นเป็น 0
+                window.location.href = "selectTheme.html"; // ไปหน้าเลือกธีม
+            } else {
+                alert("Please enter your name!");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>Match It Up!</title>
+    <link rel="stylesheet" href="style_Match.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ส่วนของโปรไฟล์ -->
+    <div class="profile-container">
+      <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic">
+      <span id="playerName"></span>
+        <span id="playerScore"></span>
+        <script src="script.js"></script>
+  </div>
+    <!-- หน้าเริ่มต้นของเกม -->
+    <div class="start-container">
+      <!-- ปุ่มย้อนกลับ -->
+    <button class="pause-btn" id="backButton" onclick="goToSelectGame()">
+      <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+  </button>
+
+  <img src="imagesPuzzle/decorate/LogoMatchItUp.jpg" class="logo">
+
+      <!-- ปุ่ม Play -->
+       <div class="play-container">
+      <button id="start-game-btn" class="play-button">PLAY</button>
+      <!-- <button class="play-button">PLAY</button> -->
+       </div>
+      <!-- ปุ่มเปิด/ปิดเสียง
+      <button id="toggle-music-btn" class="music-button">🎵</button> -->
+    </div>
+
+    <!-- เสียงเพลงพื้นหลัง -->
+    <!-- <audio id="bg-music" loop>
+      <source src="background-music.mp3" type="audio/mpeg" />
+    </audio> -->
+
+    <script>
+      // เมื่อกดปุ่ม PLAY ให้ไปที่หน้าเกมหลัก
+      document
+        .getElementById("start-game-btn")
+        .addEventListener("click", function () {
+          console.log("🎮 เริ่มเกม → ไปที่ index_Match.html");
+          window.location.href = "index_Match.html"; //  เปลี่ยนหน้าไปเกมหลัก
+        });
+
+      // ปุ่มเปิด/ปิดเสียงเพลง
+      // const bgMusic = document.getElementById("bg-music");
+      // const musicButton = document.getElementById("toggle-music-btn");
+
+      // let isMusicPlaying = false;
+
+      // musicButton.addEventListener("click", function () {
+      //   if (isMusicPlaying) {
+      //     bgMusic.pause();
+      //     musicButton.textContent = "🔇";
+      //   } else {
+      //     bgMusic.play();
+      //     musicButton.textContent = "🎵";
+      //   }
+      //   isMusicPlaying = !isMusicPlaying;
+      // });
+    </script>
+
+    <script src="script_Match.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Quest</title>
+    <link rel="stylesheet" href="stylePuzzle.css">
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    updateProfileScore();
+});
+</script>
+<body class="forestBackground">
+    <!-- ปุ่มย้อนกลับ -->
+    <button class="pause-btn" id="backButton" onclick="goToSelectGame()">
+        <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+    </button>
+
+    <!-- ส่วนของโปรไฟล์ -->
+    <div class="profile-container">
+        <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic">
+        <span id="playerName"></span>
+        <span id="playerScore"></span>
+    </div>
+
+    <div class="start-container">
+        <!-- โลโก้เกม -->
+        <div>
+            <img src="imagesPuzzle/decorate/LogoPuzzle.jpg" class="logo1">
+        </div>
+
+        <h1>Select Difficulty</h1>
+
+        <!-- ปุ่มเลือกระดับ -->
+        <div class="difficulty-buttons">
+            <button class="easy" onclick="selectLevel(3)">Easy 3x3</button>
+            <button class="medium" onclick="selectLevel(4)">Medium 4x4</button>
+            <button class="hard" onclick="selectLevel(5)">Hard 5x5</button>
+        </div>
+    </div>
+    
+
+    <script src="script.js" defer></script>
+<script src="scriptPuzzle.js" defer></script>
+
+</body>
+</html>

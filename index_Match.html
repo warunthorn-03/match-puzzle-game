@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style_Match.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+     <!-- ส่วนของโปรไฟล์ -->
+     <div class="profile-container">
+      <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic">
+      <span id="playerName"></span>
+      <span id="playerScore"></span>
+      <script src="script.js"></script>
+    </div>
+    <div id="game-background"></div>
+    <div class="game-container">
+     
+      <!-- ส่วนแสดงเวลา -->
+      <div class="timer-container">
+        <div class="timer-box">
+          <span class="timer" id="timer">00:15</span>
+        </div>
+      </div>
+
+      <!-- คำถาม -->
+      <h2 class="question" id="question-title">Match It Up!!</h2>
+
+      <!-- ภาพประกอบคำถาม -->
+      <!-- <div class="image-container">
+        <img id="question-image" src="bridge.jpg" alt="Matching Image" />
+      </div> -->
+      <div class="image-container">
+        <img
+          id="question-image"
+          src=""
+          alt="Matching Image"
+          style="display: none"
+        />
+      </div>
+
+      <!-- ปุ่มตัวเลือก -->
+      <div class="options-container" id="options-container">
+        <!-- จะสร้างปุ่มจาก JavaScript -->
+      </div>
+
+      <!-- คะแนน -->
+      <div class="score-container">
+        <span class="score" id="score">✔ 0</span>
+      </div>
+    </div>
+
+    <!-- Bonus Time Popup -->
+    <div id="bonus-container" class="bonus-container" style="display: none">
+      <div class="bonus-popup">
+        <h2>Bonus time</h2>
+        <div class="bonus-cards" id="bonus-cards">
+          <!-- การ์ดโบนัสจะถูกสร้างโดย JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- พื้นที่แสดงไอเทมที่ได้รับ -->
+    <div class="bonus-items-container" id="bonus-items-container">
+      <!-- ไอเทมที่ได้รับจะแสดงที่นี่ -->
+    </div>
+
+    <!-- Popup แจ้งผลลัพธ์ -->
+    <div id="popup-container" class="popup-container" style="display: none">
+      <div class="popup">
+        <h2 id="popup-title"></h2>
+        <p id="popup-message"></p>
+      </div>
+    </div>
+
+    <!-- Popup สรุปผลเกม -->
+    <div id="game-complete-popup">
+      <div class="game-complete-container">
+        <h2 class="game-complete-title">GAME COMPLETE</h2>
+        <p>Your Score</p>
+        <div id="final-score" class="final-score">0</div>
+
+        <div class="game-complete-buttons">
+          <button id="show-answers-btn">📜 SHOW ANSWER</button>
+          <button id="play-again-btn">🔄 PLAY AGAIN</button>
+          <button id="exit-btn" class="exit-btn" onclick="exitGame()">
+            EXIT
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup แสดงคำตอบ -->
+    <div id="answers-popup" class="popup-container" style="display: none">
+      <div class="popup">
+        <div class="top-bar">
+          <button onclick="closeAnswersPopup()" class="back-button">⬅</button>
+        </div>
+        <h2>ANSWERS</h2>
+        <div id="answers-list" class="scrollable-container"></div>
+      </div>
+    </div>
+
+    <script src="script_Match.js" defer></script>
+    <script>
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   const gameCompletePopup = document.getElementById(
+      //     "game-complete-popup"
+      //   );
+
+      //   // ✅ ตรวจสอบว่าเกมจบแล้วหรือไม่
+      //   if (localStorage.getItem("gameFinished") === "true") {
+      //     // ✅ ถ้ามี gameRestarted → ไม่ต้องแสดง Game Complete
+      //     if (!localStorage.getItem("gameRestarted")) {
+      //       console.log("🔹 กลับมาจากหน้า Answers → แสดง Game Complete");
+      //       document.getElementById("final-score").textContent =
+      //         localStorage.getItem("finalScore") || "0";
+      //       gameCompletePopup.style.display = "flex";
+      //     } else {
+      //       console.log("🔄 เกมถูกรีเซ็ต → ไม่แสดง Game Complete");
+      //       localStorage.removeItem("gameRestarted"); // ✅ ลบค่า gameRestarted หลังรีเซ็ต
+      //     }
+      //   }
+      // });
+      document.addEventListener("DOMContentLoaded", () => {
+        const gameCompletePopup = document.getElementById(
+          "game-complete-popup"
+        );
+
+        if (localStorage.getItem("gameRestarted") === "true") {
+          console.log("🔄 เกมถูกรีสตาร์ท → ไม่แสดง Game Complete");
+          localStorage.removeItem("gameRestarted");
+          localStorage.removeItem("gameFinished");
+          localStorage.removeItem("finalScore");
+        } else if (localStorage.getItem("gameFinished") === "true") {
+          console.log("🔹 กลับมาจากหน้า Answers → แสดง Game Complete");
+          document.getElementById("final-score").textContent =
+            localStorage.getItem("finalScore") || "0";
+          gameCompletePopup.style.display = "flex";
+        }
+      });
+
+      document
+        .getElementById("play-again-btn")
+        .addEventListener("click", () => {
+          console.log("🔄 กำลังรีเซ็ตเกม...");
+
+          //  ต้องตั้งค่า gameRestarted ก่อนเปลี่ยนหน้า
+          localStorage.setItem("gameRestarted", "true");
+
+          //  รีเซ็ตสถานะเกมจบ
+          localStorage.removeItem("gameFinished");
+          localStorage.removeItem("finalScore");
+
+          //  รีโหลดหน้าใหม่เพื่อเริ่มเกมใหม่
+          window.location.href = "index_Match.html";
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,614 @@
+body {
+  background-image: url("images/background.jpg"); /* 🔹 ใช้รูปภาพพื้นหลัง */
+  background-size: cover; /* 🔹 ทำให้ภาพเต็มหน้าจอ */
+  background-position: center; /* 🔹 จัดตำแหน่งภาพตรงกลาง */
+  background-repeat: no-repeat; /* 🔹 ไม่ให้ภาพซ้ำ */
+  min-height: auto; /* 🔹 ให้พื้นหลังเต็มหน้าจอ */
+  background-attachment: fixed; /* 🔹 ให้ภาพติดกับพื้นหลัง */
+  font-family: 'Fredoka', sans-serif;
+  text-align: center;
+  overflow-x: hidden; /* ปิดการเลื่อนแนวนอน */
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    overflow: hidden; /* ป้องกันการขยายออก */
+}
+
+
+.title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 55px;
+    color: #333;
+    text-align: center;
+    transform: rotate(-5deg); /* ให้เอียงโค้งเบาๆ */
+    text-shadow: 4px 4px 0px #FFD700, 8px 8px 0px rgba(0, 0, 0, 0.2); /* เงาสองชั้น */
+    margin-top: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title:hover {
+    transform: rotate(-2deg) scale(1.05); /* ขยับเบาๆเมื่อโฮเวอร์ */
+}
+
+/* ปรับสไตล์ของคอนเทนเนอร์ทั้งหมดให้อยู่ตรงกลาง */
+.start-container {
+  display: flex;
+  flex-direction: column;
+  top: 60%;
+  justify-content: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Luckiest+Guy&display=swap');
+
+.play-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+
+.play-button {
+  background: linear-gradient(to bottom, #ff7f50, #ff6347);
+  border: none;
+  padding: 15px 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.play-button:hover {
+  background: linear-gradient(to bottom, #ff6347, #ff4500);
+  transform: scale(1.05);
+}
+
+
+.play-button:active {
+  transform: scale(0.95);
+}
+
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .timer-container {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    background-color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 18px; /* 🔹 ปรับขนาดตัวหนังสือ */
+  }
+  
+  .timer-box {
+    background-color: red;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+
+  .score-container {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .score {
+    color: #6c3c2d; /* สีแดงส้ม */
+    font-weight: bold;
+    font-size: 24px; /* ปรับขนาดใหญ่ขึ้น */
+  }
+  
+  .question {
+    background-color: #fce8d5; /* สีพื้นหลัง */
+    padding: 15px 28px; /* ปรับขนาดพื้นที่รอบตัวอักษร */
+    border-radius: 14px; /* ทำให้ขอบโค้งมน */
+    font-weight: bold;
+    display: inline-block; /* ✅ ให้ขนาดพอดีกับข้อความ */
+    border: 3px solid #a55b39; /* ✅ ใส่กรอบสีดำ (ถ้าต้องการ) */
+    font-family: 'Fredoka', sans-serif; /* ✅ ใช้ฟอนต์ Fredoka */
+    font-size: 28px; /* ✅ ปรับขนาดให้สวย */
+    text-transform: uppercase; /* ✅ ทำให้เป็นตัวพิมพ์ใหญ่ */
+    box-shadow: 3px 3px 0px #88503a; /* 🔹 เพิ่มเงาให้ดูมีมิติ */
+  }
+  
+  /* กำหนดขนาดรูปให้คงที่ทุกข้อ */
+  .image-container {
+    width: 450px;     /* ปรับตามความเหมาะสม */
+    height: 300px;    /* ปรับตามความเหมาะสม */
+    margin: 20px auto;
+    border-radius: 20px; /* ทำมุมมน */
+    overflow: hidden; /* ตัดส่วนเกินหากภาพไม่พอดี */
+    /* border: 3px solid #8b4513; 🔹 เพิ่มกรอบ */
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* หรือ object-fit: contain ก็ได้ */
+  }
+  
+  .options-container {
+    margin-top: 75px; /* ระยะห่างจากรูปภาพ */
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    flex-wrap: wrap; /* 🔹 ปรับให้รองรับการแสดงผลบนหน้าจอเล็ก */
+  }
+  
+  .option {
+    background: linear-gradient(to bottom, #fdf6e3, #f5e1b5); /* สีโทนอ่อน */
+    border: 3px solid #c08b5c;
+    border-radius: 15px; /* ปรับให้โค้งมน */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Fredoka One", sans-serif;
+    font-size: 24px;
+    color: #5a3e2b;
+    padding: 12px 24px;
+    margin: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    min-width: 150px; /* กำหนดขนาดให้ปุ่มเท่ากัน */
+    text-align: center;
+  }
+  
+  .option:hover {
+    background: linear-gradient(to bottom, #ffebbb, #f5d68b); /* สีสว่างขึ้น */
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
+  
+  .option:active {
+    transform: scale(0.95);
+  }
+  
+  /* ทำให้ปุ่มดูจางลง (faded) */
+  .option.faded {
+    opacity: 0.3;
+    pointer-events: none; /* ไม่ให้คลิกซ้ำ */
+  }
+  
+  /* ใช้ไฮไลต์คำตอบที่ถูกในข้อความ popup */
+  .highlight {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* สไตล์ popup */
+  .popup-container {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  .correct-answer {
+    background-color: #3C3C3C !important; /* ✅ ปุ่มดำ (ถูกต้อง) */
+    color: white;
+  }
+  
+  .wrong-answer {
+    background-color: #E74C3C !important; /* ❌ ปุ่มแดง (ผิด/หมดเวลา) */
+    color: white;
+  }
+  
+  .popup {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    max-width: 400px;
+    /* border: 2px dashed #8B4513; เพิ่มเส้นประ (dashed border) */
+  }
+  
+  #popup-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #popup-message {
+    font-size: 18px;
+  }
+  
+  /* popup ของ Bonus Time */
+  /* #bonus-container .popup {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .bonus-card {
+    width: 100px;
+    height: 140px;
+    background-color: #F5E3C8;
+    border: 2px solid #8B4513;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+  }
+  
+  .bonus-card:hover {
+    transform: scale(1.05);
+  } */
+
+  /* Bonus Time Popup */
+.bonus-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .bonus-popup {
+    background-color: #fdf5e6;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #8B4513;
+  }
+  
+  .bonus-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .bonus-card {
+    width: 100px;
+    height: 140px;
+    background-color: #ffb6c1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  
+  .bonus-card.flipped {
+    background-color: #fff;
+    border: 2px solid #8B4513;
+  }
+  
+  .bonus-card .hidden-icon {
+    display: none;
+  }
+  
+  .bonus-card.flipped .hidden-icon {
+    display: block;
+  }
+  
+  .bonus-items-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .bonus-item {
+    background-color: #fff;
+    border: 2px solid #8B4513;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bonus-item:hover {
+    background-color: #f5e3c8;
+  }  
+  
+  .final-score {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+/* ปรับ Popup ให้แสดงตรงกลาง */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none; /* ซ่อนเริ่มต้น */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* กำหนดขนาด Popup */
+.popup {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ทำให้เลื่อนขึ้นลงได้ */
+.scrollable-container {
+  display: flex;
+  flex-wrap: wrap; /* ทำให้เรียงแนวนอน */
+  gap: 15px;
+  overflow-y: auto; /* ทำให้เลื่อนขึ้นลงได้ */
+  max-height: 400px; /* กำหนดความสูงของพื้นที่เลื่อน */
+  padding: 10px;
+}
+
+/* ปรับขนาดกล่องคำตอบ */
+.answer-box {
+  display: flex;
+  align-items: center; /* ✅ จัดให้อยู่กึ่งกลางแนวตั้ง */
+  justify-content: space-evenly; /* ✅ ทำให้รูปภาพและปุ่มห่างเท่ากัน */
+  background: white;
+  padding: 15px; /* ✅ ลด padding */
+  margin: 5px auto; /* ✅ ลดระยะห่างระหว่างกล่อง */
+  width: 90%; /* ✅ ปรับความกว้างให้เหมาะสม */
+  border-bottom: 2px solid #C08552; /* ✅ เส้นแบ่งบางลง */
+  border-radius: 8px;
+}
+
+/* ปรับขนาดรูปภาพ */
+.answer-image {
+  width: 240px; /* ✅ กำหนดขนาดรูป */
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: 10px; /* ✅ ให้รูปชิดซ้าย */
+}
+
+/* ปุ่มเริ่มต้นเป็นสีเทาเข้ม */
+.answer-button {
+  background-color: #3C3C3C;
+  color: white;
+  padding: 20px 32px;
+  border: none;
+  border-radius: 26px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px; /* ✅ ให้ปุ่มชิดขวา */
+  flex-grow: 1; /* ✅ ทำให้ปุ่มขยายเท่ากันตามปุ่มที่กว้างที่สุด */
+  max-width: 150px; /* ✅ จำกัดความกว้างไม่ให้ขยายเกินไป */
+}
+
+.answers-container {
+  max-width: 60%; /* ✅ ทำให้กล่องคำตอบไม่กว้างเกินไป */
+  margin: auto;
+  background: #FDF5E6;
+  padding: 15px; /* ✅ ลด Padding */
+  border-radius: 10px;
+  border: 2px solid #C08552;
+}
+
+/* ปรับปุ่ม Back */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ปรับขนาด Game Complete Popup ให้ใหญ่ขึ้น */
+#game-complete-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* พื้นหลังดำจาง */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* กล่องสรุปผลเกม */
+.game-complete-container {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ข้อความ Game Complete */
+.game-complete-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* คะแนนใหญ่ขึ้น */
+.final-score {
+  font-size: 48px;
+  font-weight: bold;
+  color: #2844b4;
+  margin: 10px 0;
+}
+
+/* ปุ่มกด */
+.game-complete-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  align-items: center; /* ✅ ทำให้ปุ่ม Exit อยู่ตรงกลาง */
+}
+
+.game-complete-buttons button {
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+
+/* ปุ่ม Answers */
+#show-answers-btn {
+  width: 100%;
+  max-width: 500px; /* จำกัดขนาดปุ่มให้พอดี */
+  background-color: #3498db;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+#show-answers-btn:hover {
+  background-color: #2980b9;
+}
+
+/* ปุ่ม Play Again */
+#play-again-btn {
+  width: 100%;
+  max-width: 500px; /* จำกัดขนาดปุ่มให้พอดี */
+  background-color: #f39c12;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+#play-again-btn:hover {
+  background-color: #e67e22;
+}
+
+/* ปุ่ม Exit */
+.exit-btn {
+  width: 100%;
+  max-width: 500px; /* จำกัดขนาดปุ่มให้พอดี */
+  background-color: #e74c3c;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.exit-btn:hover {
+  background-color: #c0392b;
+}
+
+/* เอฟเฟกต์ fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#question-image {
+  display: none; /* ✅ ซ่อนรูปจนกว่าจะโหลดเสร็จ */
+}
+
+#question-image.loaded {
+  display: block; /* ✅ แสดงรูปเมื่อโหลดเสร็จ */
+}
+
+/* 🔲 ปุ่มย้อนกลับในธีม */
+#backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px; /* ทำให้โค้งมน */
+  padding: 18px 30px; /* เพิ่มขนาด */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+}
+
+#backButton img {
+  width: 20px;
+}
+
+.logo {
+  width: 400px;
+  border-radius: 20px; /* ทำให้ขอบมน */
+  position: absolute;
+  top: 40%; /* ให้โลโก้อยู่กลางแนวตั้ง */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

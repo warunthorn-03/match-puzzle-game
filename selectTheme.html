@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mainBackground">
+    <button class="pause-btn" id="backButton" onclick="goBackIndex()">
+        <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+    </button>
+
+    <div class="theme-container">
+        <div class="profile-container">
+            <img src="imagesPuzzle/decorate/profile.jpg" class="profile-pic">
+            <span id="playerName"></span>
+            <span id="playerScore"></span>
+        </div>
+
+
+        <img src="imagesPuzzle/decorate/MainLogo.webp" class="MainLogo">
+        <h1 class="h1title">Select Theme</h1>
+
+        <div class="themes">
+            <div class="theme-card" data-theme="selectTheme('forest')">
+                <img src="imagesPuzzle/theme/forest.jpg">
+                <p>Enchanted Forest</p>
+            </div>
+
+            <div class="theme-card locked" data-theme="selectTheme('underwater')">
+                <div class="lock-overlay">
+                    <img src="imagesPuzzle/decorate/lock.png" class="lock-icon">
+                </div>
+                <img src="imagesPuzzle/theme/underWater.jpg">
+                <p>Underwater Adventure</p>
+                <span class="lock">3000 Point</span>
+            </div>
+
+            <div class="theme-card locked" data-theme="selectTheme('space')">
+                <div class="lock-overlay">
+                    <img src="imagesPuzzle/decorate/lock.png" class="lock-icon">
+                </div>
+                <img src="imagesPuzzle/theme/space.jpg">
+                <p>Space Odyssey</p>
+                <span class="lock">5000 Point</span>
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+    <script src="script.js" defer></script>
+</body>
+</html>

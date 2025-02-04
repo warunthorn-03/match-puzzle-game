@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Answers</title>
+    <link rel="stylesheet" href="style_Match.css" />
+  </head>
+  <body>
+    <!-- ปุ่มย้อนกลับไปหน้าสรุปคะแนน -->
+    <div class="top-bar">
+    <button class="pause-btn" id="backButton" onclick="goBackToResults()">  
+      <img src="imagesPuzzle/decorate/backIcon.png" alt="Back">
+  </button>
+    </div>
+
+    <div class="answers-container">
+      <h2>ANSWER</h2>
+      <div id="answers-list" class="horizontal-scroll"></div>
+    </div>
+
+    <script>
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   let answers = JSON.parse(localStorage.getItem("savedAnswer")) || [];
+
+      //   if (answers.length === 0) {
+      //     console.log("❌ ไม่พบข้อมูลเกมล่าสุด!");
+      //     document.getElementById("answers-list").innerHTML =
+      //       "<p>ไม่มีข้อมูลคำตอบของเกมล่าสุด</p>";
+      //     return;
+      //   }
+
+      //   let container = document.getElementById("answers-list");
+
+      //   container.innerHTML = ""; // ✅ ล้างข้อมูลก่อนแสดง
+
+      //   answers.forEach((item, index) => {
+      //     let answerBox = document.createElement("div");
+      //     answerBox.classList.add("answer-box");
+
+      //     let number = document.createElement("p");
+      //     number.textContent = `${index + 1}.`;
+
+      //     let img = document.createElement("img");
+      //     img.src = item.image;
+      //     img.classList.add("answer-image");
+
+      //     let answerText = document.createElement("button");
+      //     answerText.textContent = item.correctAnswer;
+      //     answerText.classList.add("answer-button");
+
+      //     // ✅ ตรวจสอบเงื่อนไขการแสดงสีปุ่ม
+      //     if (
+      //       item.timeout ||
+      //       item.userAnswer === null ||
+      //       item.userAnswer !== item.correctAnswer
+      //     ) {
+      //       answerText.classList.add("wrong-answer"); // ❌ ตอบผิดหรือหมดเวลา → ปุ่มแดง
+      //     } else {
+      //       answerText.classList.add("correct-answer"); // ✔️ ตอบถูก → ปุ่มดำ
+      //     }
+
+      //     answerBox.appendChild(number);
+      //     answerBox.appendChild(img);
+      //     answerBox.appendChild(answerText);
+      //     container.appendChild(answerBox);
+      //   });
+      // });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("🔄 โหลดคำตอบล่าสุด...");
+
+        let answers = JSON.parse(localStorage.getItem("savedAnswers")) || [];
+
+        if (answers.length === 0) {
+          document.getElementById("answers-list").innerHTML =
+            "<p>❌ No answers recorded.</p>";
+          return;
+        }
+
+        let container = document.getElementById("answers-list");
+        container.innerHTML = ""; // ล้างข้อมูลก่อนแสดง
+
+        answers.forEach((item, index) => {
+          let answerBox = document.createElement("div");
+          answerBox.classList.add("answer-box");
+
+          let number = document.createElement("p");
+          number.textContent = `${index + 1}.`;
+
+          let img = document.createElement("img");
+          img.src = item.image;
+          img.classList.add("answer-image");
+
+          let answerText = document.createElement("button");
+          answerText.textContent = item.correctAnswer;
+          answerText.classList.add("answer-button");
+
+          if (
+            item.timeout ||
+            item.userAnswer === null ||
+            item.userAnswer !== item.correctAnswer
+          ) {
+            answerText.classList.add("wrong-answer"); // ❌ ตอบผิดหรือหมดเวลา → ปุ่มแดง
+          } else {
+            answerText.classList.add("correct-answer"); // ✔️ ตอบถูก → ปุ่มดำ
+          }
+
+          answerBox.appendChild(number);
+          answerBox.appendChild(img);
+          answerBox.appendChild(answerText);
+          container.appendChild(answerBox);
+        });
+      });
+
+      // ฟังก์ชันย้อนกลับไปหน้าสรุปคะแนน
+
+      function goBackToResults() {
+        window.location.href = "index_Match.html#game-complete-popup";
+      }
+    </script>
+  </body>
+</html>
